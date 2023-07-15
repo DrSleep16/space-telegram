@@ -8,7 +8,7 @@ TOKEN = os.getenv('TOKEN')
 bot = telegram.Bot(TOKEN)
 
 
-def publish_photos(directory, channel_id, interval_hours):
+def publish_photos(directory, channel_id, interval_hours, choose_photo=None):
 
     # Получение списка файлов из указанной директории
     photos = os.listdir(directory)
@@ -18,7 +18,10 @@ def publish_photos(directory, channel_id, interval_hours):
         for photo in photos:
             photo_path = os.path.join(directory, photo)
             with open(photo_path, 'rb') as photo_file:
-                bot.send_photo(chat_id=channel_id, photo=photo_file)
+                if choose_photo is not None:
+                    bot.send_photo(chat_id=channel_id, photo=choose_photo)
+                else:
+                    bot.send_photo(chat_id=channel_id, photo=photo_file)
 
             time.sleep(interval_hours * 3600)
 
