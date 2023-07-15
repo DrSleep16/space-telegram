@@ -1,9 +1,9 @@
 import requests
 import os
 
-def download_apod_images(count, save_directory):
-    if not os.path.exists(save_directory):
-        os.makedirs(save_directory)
+def download_apod_images(count):
+    if not os.path.exists('images'):
+        os.makedirs('images')
     url = 'https://api.nasa.gov/planetary/apod'
     api_key = 'ZDFKgbARwUMVX1fy9enCi2CF8Feli4ewqJFYGasS'
     params = {
@@ -17,7 +17,7 @@ def download_apod_images(count, save_directory):
     for item in data:
         image_url = item['url']
         image_filename = os.path.basename(image_url)
-        save_path = os.path.join(save_directory, image_filename)
+        save_path = os.path.join('images/', image_filename)
         response = requests.get(image_url)
         response.raise_for_status()
 

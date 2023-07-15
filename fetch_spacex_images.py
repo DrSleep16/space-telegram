@@ -11,9 +11,9 @@ def fetch_spacex_last_launch(url, save_path):
             file.write(chunk)
 
 
-def get_latest_launch_photos(folder_name, id='launches/5eb87d47ffd86e000604b38a'):
-    if not os.path.exists(folder_name):
-        os.mkdir(folder_name)
+def get_latest_launch_photos(id='launches/5eb87d47ffd86e000604b38a'):
+    if not os.path.exists('images'):
+        os.mkdir('images')
     url = f'https://api.spacexdata.com/v4/{id}'
     response = requests.get(url)
     response.raise_for_status()
@@ -23,7 +23,7 @@ def get_latest_launch_photos(folder_name, id='launches/5eb87d47ffd86e000604b38a'
     for photo in photos:
         i+=1
         extension = get_file_extension(photo)
-        fetch_spacex_last_launch(photo,f'{folder_name}/image_{i}{extension}')
+        fetch_spacex_last_launch(photo,f'images/image_{i}{extension}')
 
 
 def get_file_extension(url):

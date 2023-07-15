@@ -2,9 +2,9 @@ import requests
 import os
 
 
-def download_epic_images(count, save_directory):
-    if not os.path.exists(save_directory):
-        os.makedirs(save_directory)
+def download_epic_images(count):
+    if not os.path.exists('images'):
+        os.makedirs('images')
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     api_key = 'ZDFKgbARwUMVX1fy9enCi2CF8Feli4ewqJFYGasS'
     params = {
@@ -20,7 +20,7 @@ def download_epic_images(count, save_directory):
         image_date = item['date'].split()[0].replace('-', '/')
         image_url = f'https://api.nasa.gov/EPIC/archive/natural/{image_date}/png/{image_name}.png'
         image_filename = f'{image_name}.png'
-        save_path = os.path.join(save_directory, image_filename)
+        save_path = os.path.join('images', image_filename)
         response = requests.get(image_url, params=params)
         response.raise_for_status()
 
