@@ -2,11 +2,11 @@ import requests
 import os
 
 
-def download_epic_images(count):
+def download_epic_images(count=5):
     if not os.path.exists('images'):
         os.makedirs('images')
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
-    api_key = 'ZDFKgbARwUMVX1fy9enCi2CF8Feli4ewqJFYGasS'
+    api_key = os.getenv('API_KEY')
     params = {
         'api_key': api_key
     }
@@ -26,3 +26,7 @@ def download_epic_images(count):
 
         with open(save_path, 'wb') as file:
             file.write(response.content)
+
+
+if __name__ == '__main__':
+    download_epic_images(5)

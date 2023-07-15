@@ -31,3 +31,7 @@ def get_file_extension(url):
     path = parsed_url.path
     extension = os.path.splitext(path)[1]
     return extension
+
+
+if __name__ == '__main__':
+    get_latest_launch_photos()
