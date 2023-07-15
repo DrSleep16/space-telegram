@@ -1,7 +1,29 @@
 import telegram
+import os
+import random
+import time
 
 
-TOKEN = '6134575993:AAEFev1WHWIHSTlH4H8jA0JE0cLAY7UsoN4'
+TOKEN = os.getenv('TOKEN')
 bot = telegram.Bot(TOKEN)
-bot.sendMessage(chat_id='-1001709184129', text='Hello!')
-bot.sendPhoto(chat_id='-1001709184129',photo='https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg')
+
+
+def publish_photos(directory, channel_id, interval_hours):
+
+    # Получение списка файлов из указанной директории
+    photos = os.listdir(directory)
+    random.shuffle(photos)  # Перемешивание списка фотографий в случайном порядке
+
+    while True:
+        for photo in photos:
+            photo_path = os.path.join(directory, photo)
+            with open(photo_path, 'rb') as photo_file:
+                bot.send_photo(chat_id=channel_id, photo=photo_file)
+
+            time.sleep(interval_hours * 3600)
+
+if __name__ == '__main__':
+    directory = 'images/'
+    channel_id = os.getenv('CHANNEL_ID')
+    interval_hours = int(os.getenv('INTERVAL_HOURS'))
+    publish_photos(directory, channel_id, interval_hours)
