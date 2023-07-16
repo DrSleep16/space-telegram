@@ -18,11 +18,9 @@ def get_latest_launch_photos(id='launches/5eb87d47ffd86e000604b38a'):
     response.raise_for_status()
     latest_photo_data = response.json()
     photos = latest_photo_data['links']['flickr']['original']
-    i = 0
-    for photo in photos:
-        i+=1
+    for i, photo in enumerate(photos, start=1):
         extension = get_file_extension(photo)
-        fetch_spacex_last_launch(photo,f'images/image_{i}{extension}')
+        fetch_spacex_last_launch(photo, f'images/image_{i}{extension}')
 
 
 def get_file_extension(url):
