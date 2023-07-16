@@ -3,7 +3,7 @@ import os
 from urllib.parse import urlparse
 
 
-def fetch_spacex_last_launch(url, save_path):
+def save_lates_launch_photo(url, save_path):
     response = requests.get(url, stream=True)
     response.raise_for_status()
     with open(save_path, 'wb') as file:
@@ -20,7 +20,7 @@ def get_latest_launch_photos(id='launches/5eb87d47ffd86e000604b38a'):
     photos = latest_photo_data['links']['flickr']['original']
     for i, photo in enumerate(photos, start=1):
         extension = get_file_extension(photo)
-        fetch_spacex_last_launch(photo, f'images/image_{i}{extension}')
+        save_lates_launch_photo(photo, f'images/image_{i}{extension}')
 
 
 def get_file_extension(url):
