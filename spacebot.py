@@ -4,7 +4,7 @@ import random
 import time
 
 
-def publish_photos(channel_id, interval_hours, directory='images/', choose_photo=None):
+def publish_photos(channel_id, interval_hours, directory='images/'):
     photos = os.listdir(directory)
     random.shuffle(photos)
 
@@ -12,10 +12,7 @@ def publish_photos(channel_id, interval_hours, directory='images/', choose_photo
         for photo in photos:
             photo_path = os.path.join(directory, photo)
             with open(photo_path, 'rb') as photo_file:
-                if choose_photo is not None:
-                    BOT.send_photo(chat_id=channel_id, photo=choose_photo)
-                else:
-                    BOT.send_photo(chat_id=channel_id, photo=photo_file)
+                BOT.send_photo(chat_id=channel_id, photo=photo_file)
             time.sleep(interval_hours * 3600)
 
 
