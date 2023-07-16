@@ -12,8 +12,7 @@ def fetch_spacex_last_launch(url, save_path):
 
 
 def get_latest_launch_photos(id='launches/5eb87d47ffd86e000604b38a'):
-    if not os.path.exists('images'):
-        os.mkdir('images')
+    os.mkdir('images')
     url = f'https://api.spacexdata.com/v4/{id}'
     response = requests.get(url)
     response.raise_for_status()

@@ -3,8 +3,7 @@ import os
 
 
 def download_epic_images(count=5):
-    if not os.path.exists('images'):
-        os.makedirs('images')
+    os.makedirs('images')
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     api_key = os.getenv('API_KEY')
     params = {
