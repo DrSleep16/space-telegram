@@ -29,4 +29,5 @@ def download_epic_images(count=5):
 
 
 if __name__ == '__main__':
-    download_epic_images(5)
+    download_count = 5
+    download_epic_images(download_count)

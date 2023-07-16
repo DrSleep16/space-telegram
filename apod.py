@@ -26,4 +26,5 @@ def download_apod_images(count=5):
 
 
 if __name__ == '__main__':
-    download_apod_images(5)
+    download_count = 5
+    download_apod_images(download_count)
