@@ -18,11 +18,10 @@ def download_epic_images(api_key, count=5):
         image_date = image['date'].split()[0].replace('-', '/')
         image_url = f'https://api.nasa.gov/EPIC/archive/natural/{image_date}/png/{image_name}.png'
         image_filename = f'{image_name}.png'
-        save_path = os.path.join('images', image_filename)
+        image_path = os.path.join('images', image_filename)
         response = requests.get(image_url, params=params)
         response.raise_for_status()
-
-        with open(save_path, 'wb') as file:
+        with open(image_path, 'wb') as file:
             file.write(response.content)
 
 

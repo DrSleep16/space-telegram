@@ -15,11 +15,10 @@ def download_apod_images(api_key, count=5):
     for apod_image in apod_images_data:
         image_url = apod_image['url']
         image_filename = os.path.basename(image_url)
-        save_path = os.path.join('images/', image_filename)
+        image_path = os.path.join('images/', image_filename)
         response = requests.get(image_url)
         response.raise_for_status()
-
-        with open(save_path, 'wb') as file:
+        with open(image_path, 'wb') as file:
             file.write(response.content)
 
 
