@@ -2,10 +2,9 @@ import requests
 import os
 
 
-def download_epic_images(count=5):
+def download_epic_images(api_key, count=5):
     os.makedirs('images')
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
-    api_key = os.getenv('API_KEY')
     params = {
         'api_key': api_key
     }

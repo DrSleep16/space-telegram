@@ -1,10 +1,9 @@
 import requests
 import os
 
-def download_apod_images(count=5):
+def download_apod_images(api_key, count=5):
     os.makedirs('images')
     url = 'https://api.nasa.gov/planetary/apod'
-    api_key = os.getenv('API_KEY')
     params = {
         'api_key': api_key,
         'count': count
