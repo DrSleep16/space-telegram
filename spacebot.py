@@ -4,7 +4,7 @@ import random
 import time
 
 
-def publish_photos(directory='images/', channel_id=os.getenv('CHANNEL_ID'), interval_hours=int(os.getenv('CHANNEL_ID')), choose_photo=None):
+def publish_photos(channel_id, interval_hours, directory='images/', choose_photo=None):
     photos = os.listdir(directory)
     random.shuffle(photos)
 
@@ -25,4 +25,4 @@ if __name__ == '__main__':
     directory = 'images/'
     channel_id = os.getenv('TG_CHANNEL_ID')
     interval_hours = int(os.getenv('PUBLISH_INTERVAL_HOURS'))
-    publish_photos(directory, channel_id, interval_hours)
+    publish_photos(channel_id, interval_hours, directory)
