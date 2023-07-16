@@ -10,12 +10,12 @@ def download_epic_images(api_key, count=5):
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
-    data = response.json()
-    images = data[:count]
+    epic_images_data = response.json()
+    images = epic_images_data[:count]
 
-    for item in images:
-        image_name = item['image']
-        image_date = item['date'].split()[0].replace('-', '/')
+    for image in images:
+        image_name = image['image']
+        image_date = image['date'].split()[0].replace('-', '/')
         image_url = f'https://api.nasa.gov/EPIC/archive/natural/{image_date}/png/{image_name}.png'
         image_filename = f'{image_name}.png'
         save_path = os.path.join('images', image_filename)

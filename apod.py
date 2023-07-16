@@ -10,10 +10,10 @@ def download_apod_images(api_key, count=5):
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
-    data = response.json()
+    apod_images_data = response.json()
 
-    for item in data:
-        image_url = item['url']
+    for apod_image in apod_images_data:
+        image_url = apod_image['url']
         image_filename = os.path.basename(image_url)
         save_path = os.path.join('images/', image_filename)
         response = requests.get(image_url)

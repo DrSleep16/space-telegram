@@ -16,8 +16,8 @@ def get_latest_launch_photos(id='launches/5eb87d47ffd86e000604b38a'):
     url = f'https://api.spacexdata.com/v4/{id}'
     response = requests.get(url)
     response.raise_for_status()
-    data = response.json()
-    photos = data['links']['flickr']['original']
+    latest_photo_data = response.json()
+    photos = latest_photo_data['links']['flickr']['original']
     i = 0
     for photo in photos:
         i+=1
