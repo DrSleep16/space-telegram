@@ -10,8 +10,8 @@ def download_epic_images(api_key, count=5):
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
-    epic_images_data = response.json()
-    images = epic_images_data[:count]
+    epic_images = response.json()
+    images = epic_images[:count]
 
     for image in images:
         image_name = image['image']
