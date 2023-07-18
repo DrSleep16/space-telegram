@@ -1,6 +1,6 @@
 import requests
 import os
-
+from save_photo import save_photo
 
 def download_epic_images(api_key, count=5):
     os.makedirs('images')
@@ -19,10 +19,7 @@ def download_epic_images(api_key, count=5):
         image_url = f'https://api.nasa.gov/EPIC/archive/natural/{image_date}/png/{image_name}.png'
         image_filename = f'{image_name}.png'
         image_path = os.path.join('images', image_filename)
-        response = requests.get(image_url, params=params)
-        response.raise_for_status()
-        with open(image_path, 'wb') as file:
-            file.write(response.content)
+        save_photo(image_url, image_path)
 
 
 if __name__ == '__main__':

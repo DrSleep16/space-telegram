@@ -9,7 +9,9 @@ import os
 if __name__ =='__main__':
     load_dotenv()
     api_key = os.getenv('SPACE_API_KEY')
+    channel_id = os.getenv('TG_CHANNEL_ID')
+    publish_interval = os.getenv('PUBLISH_INTERVAL_HOURS')
     download_epic_images(api_key)
     get_latest_launch_photos()
     download_apod_images(api_key)
-    publish_photos()
+    publish_photos(channel_id, publish_interval)
