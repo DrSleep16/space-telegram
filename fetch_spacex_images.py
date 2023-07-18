@@ -3,12 +3,11 @@ import os
 from urllib.parse import urlparse
 
 
-def save_lates_launch_photo(url, save_path):
+def save_latest_launch_photo(url, save_path):
     response = requests.get(url, stream=True)
     response.raise_for_status()
     with open(save_path, 'wb') as file:
-        for chunk in response.iter_content(chunk_size=8192):
-            file.write(chunk)
+        file.write(response.content)
 
 
 def get_latest_launch_photos(id='launches/5eb87d47ffd86e000604b38a'):
@@ -20,7 +19,7 @@ def get_latest_launch_photos(id='launches/5eb87d47ffd86e000604b38a'):
     photos = latest_photo['links']['flickr']['original']
     for i, photo in enumerate(photos, start=1):
         extension = get_file_extension(photo)
-        save_lates_launch_photo(photo, f'images/image_{i}{extension}')
+        save_latest_launch_photo(photo, f'images/image_{i}{extension}')
 
 
 def get_file_extension(url):
