@@ -4,10 +4,9 @@ import random
 import time
 
 
-def publish_photos(channel_id, interval_hours, directory='images/'):
+def publish_photos(channel_id, interval_hours, token, directory='images/'):
     photos = os.listdir(directory)
     random.shuffle(photos)
-    token = os.getenv('TG_TOKEN')
     bot = telegram.Bot(token)
     while True:
         for photo in photos:
@@ -21,4 +20,5 @@ if __name__ == '__main__':
     directory = 'images/'
     channel_id = os.getenv('TG_CHANNEL_ID')
     interval_hours = int(os.getenv('PUBLISH_INTERVAL_HOURS'))
-    publish_photos(channel_id, interval_hours, directory)
+    token = os.getenv('TG_TOKEN')
+    publish_photos(channel_id, interval_hours, token, directory)
