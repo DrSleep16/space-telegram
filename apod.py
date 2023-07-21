@@ -22,5 +22,5 @@ def download_apod_images(api_key, count=5):
 
 
 if __name__ == '__main__':
-    download_count = 5
+    download_count = int(input('Сколько фотографий скачать: '))
     download_apod_images(download_count)
