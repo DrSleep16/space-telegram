@@ -1,6 +1,7 @@
 import requests
 import os
 from save_photo import save_photo
+from dotenv import load_dotenv
 
 
 def download_apod_images(api_key, count=5):
@@ -22,5 +23,6 @@ def download_apod_images(api_key, count=5):
 
 
 if __name__ == '__main__':
-    download_count = int(input('Сколько фотографий скачать: '))
-    download_apod_images(download_count)
+    load_dotenv()
+    api_key = os.getenv('SPACE_API_KEY')
+    download_apod_images(5)
