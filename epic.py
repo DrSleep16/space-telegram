@@ -2,6 +2,7 @@ import requests
 import os
 from save_photo import save_photo
 from dotenv import load_dotenv
+import argparse
 
 def download_epic_images(api_key, count=5):
     os.makedirs('images')
@@ -26,4 +27,13 @@ def download_epic_images(api_key, count=5):
 if __name__ == '__main__':
     load_dotenv()
     api_key = os.getenv('SPACE_API_KEY')
-    download_epic_images(api_key,5)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--download_count',
+        '-d', type=int,
+        required=True,
+        help='Количество скачиваемых фотографий'
+    )
+    args = parser.parse_args()
+    download_count = args.download_count
+    download_epic_images(api_key,download_count)
